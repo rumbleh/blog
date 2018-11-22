@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <router-link class="navbar-brand" to="/">
                 <img src="../assets/logo.png" alt="" height="30px" width="30px">
-            </a>
+            </router-link>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -21,7 +21,7 @@
                             Hey {{ authUser.name }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="#" @click="logout()">Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -39,6 +39,12 @@
             authUser(){
                 return this.$root.auth.user
             },
+        },
+        methods: {
+            logout(){
+                this.$root.auth = {}
+                localStorage.removeItem('auth')
+            }
         },
 
         name: "Navbar"

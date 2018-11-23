@@ -31,8 +31,15 @@
 
 <script>
     import Axios from 'axios'
+    import config from '@/config'
+
     export default {
         name: "Login",
+        beforeRouteEnter(to, from, next){
+            if (localStorage.getItem("auth")){
+                return next ({ path: '/' })
+            }
+        },
         data(){
             return {
                 email: '',
@@ -46,16 +53,18 @@
             loginUser(){
                 this.submitted = true
                 this.loading = true
-                Axios.post('https://react-blog-api.bahdcasts.com/api/auth/login', {
+                Axios.post(`${config.apiUrl}/auth/login`, {
                     email: this.email,
                     password: this.password,
                 }).then((response) => {
-
+                    this.$noty.success('Successfully logged in.')
                     const { data } = response.data
                     localStorage.setItem('auth', JSON.stringify(data))
                     this.$root.auth = data
-                    this.$router.push('home')
+                    this.$router.push('/')
+
                 }).catch(({ response }) => {
+                    this.$noty.error('Oops! Something went wrong.')
                     if (response.status === 401){
                         this.errors = {
                             email: ['This credentials do not match our records.']

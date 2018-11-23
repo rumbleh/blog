@@ -42,6 +42,7 @@
         },
         methods: {
             logout(){
+                this.$noty.success('Successfully logged out')
                 this.$root.auth = {}
                 localStorage.removeItem('auth')
             }

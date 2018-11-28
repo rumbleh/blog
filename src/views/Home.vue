@@ -11,8 +11,7 @@
                 <pagination use-router :lista="this.$store.getters.getArticles" class="text-center"/>
             </div>
             <div class="col-md-8 offset-md-2 py-3" v-for="article in this.$store.getters.getArticles.data" :key="article.id">
-                <Article v:article="article">
-                    <slot>Loading...</slot>
+                <Article :article="article">
                 </Article>
             </div>
             <div class="col-md-8 offset-md-2">

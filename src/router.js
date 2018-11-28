@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 import Signup from './views/Signup.vue'
 import Home from './views/Home.vue'
+import Article from './views/Article'
 
 Vue.use(Router)
 
@@ -18,7 +19,16 @@ const router = new Router({
             component: Signup
         },
         {
+            path: '/article/:id',
+            component: Article,
+            props: []
+        },
+        {
             path: '/',
+            component: Home
+        },
+        {
+            path: '/page/:pagina',
             component: Home
         },
     ]

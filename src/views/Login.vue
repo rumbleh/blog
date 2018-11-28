@@ -31,14 +31,14 @@
 
 <script>
     import Axios from 'axios'
-    import config from '@/config'
 
     export default {
         name: "Login",
         beforeRouteEnter(to, from, next){
             if (localStorage.getItem("auth")){
                 return next ({ path: '/' })
-            }
+            } else
+                next()
         },
         data(){
             return {
@@ -53,7 +53,7 @@
             loginUser(){
                 this.submitted = true
                 this.loading = true
-                Axios.post(`${config.apiUrl}/auth/login`, {
+                Axios.post(`this.$store.apiUrl}/auth/login`, {
                     email: this.email,
                     password: this.password,
                 }).then((response) => {

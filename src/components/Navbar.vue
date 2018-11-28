@@ -1,36 +1,32 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <router-link class="navbar-brand" to="/">
-                <img src="../assets/logo.png" alt="" height="30px" width="30px">
-            </router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <b-navbar toggleable="md" type="dark" variant="primary" fixed="top">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item" v-if="!authUser">
-                        <router-link class="nav-link" to="/login">Login</router-link>
-                    </li>
-                    <li class="nav-item" v-if="!authUser">
-                        <router-link class="nav-link" to="/signup">Signup</router-link>
-                    </li>
-                    <li class="nav-item dropdown" v-if="authUser">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Hey {{ authUser.name }}
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#" @click="logout()">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+        <b-navbar-brand href="#" to="/">
+            <img src="../assets/logo.png" alt="" height="30px" width="30px">
+        </b-navbar-brand>
+
+        <b-collapse is-nav id="nav_collapse">
+            <b-navbar-nav class="ml-auto" v-if="!authUser" >
+                <b-nav-item to="/login">Login</b-nav-item>
+                <b-nav-item to="/signup">Signup</b-nav-item>
+            </b-navbar-nav>
+
+            <b-navbar-nav class="ml-auto" v-if="authUser" >
+                <b-nav-item-dropdown right :text="`Hi ${authUser.name}`">
+                    <b-dropdown-item @click="logout()">Logout</b-dropdown-item>
+                </b-nav-item-dropdown>
+            </b-navbar-nav>
+
+        </b-collapse>
+    </b-navbar>
 </template>
 
 <script>
+    import 'bootstrap/dist/css/bootstrap.css'
+    import 'bootstrap-vue/dist/bootstrap-vue.css'
+
     export default {
         mounted() {
 
@@ -45,7 +41,7 @@
                 this.$noty.success('Successfully logged out')
                 this.$root.auth = {}
                 localStorage.removeItem('auth')
-            }
+            },
         },
 
         name: "Navbar"
@@ -53,5 +49,4 @@
 </script>
 
 <style scoped>
-
 </style>

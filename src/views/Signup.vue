@@ -38,13 +38,13 @@
 
 <script>
     import Axios from 'axios'
-    import config from '@/config'
     export default {
         name: "Signup",
         beforeRouteEnter(to, from, next){
             if (localStorage.getItem("auth")){
                 return next ({ path: '/' })
-            }
+            } else
+                next()
         },
         data() {
             return {
@@ -60,7 +60,7 @@
             registerUser(){
                 this.submitted = true
                 this.loading = true
-                Axios.post(`${config.apiUrl}/auth/register`, {
+                Axios.post(`${this.state.apiUrl}/auth/register`, {
                     name: this.name,
                     email: this.email,
                     password: this.password

@@ -14,6 +14,7 @@
             </b-navbar-nav>
 
             <b-navbar-nav class="ml-auto" v-if="authUser" >
+                <b-nav-item to="/articles/create">Create article</b-nav-item>
                 <b-nav-item-dropdown right :text="`Hi ${authUser.name}`">
                     <b-dropdown-item @click="logout()">Logout</b-dropdown-item>
                 </b-nav-item-dropdown>

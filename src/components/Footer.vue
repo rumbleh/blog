@@ -1,8 +1,8 @@
 <template>
-    <b-navbar type="dark" variant="dark" sticky="bottom" fixed="">
+    <b-navbar type="dark" variant="dark" sticky="true" fixed="bottom">
 
         <b-navbar-brand href="#" to="/">
-            <img src="../assets/logo.png" alt="" height="30px" width="30px">
+            <!--<img src="../assets/logo.png" alt="" height="30px" width="30px">-->
         </b-navbar-brand>
 
         <b-nav vertical class="w-75">

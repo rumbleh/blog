@@ -4,7 +4,7 @@
       <div class="container">
           <router-view></router-view>
       </div>
-    <Footer />
+    <Footer style="position: relative" />
   </div>
 </template>
 
